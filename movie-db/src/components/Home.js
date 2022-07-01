@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const Home = () => {
+  let params = useParams();
+  let pageNumber = parseInt(params.page, 10);
   const [movies, setMovies] = useState([]);
 
   const fetchMovies = async (url) => {
@@ -19,11 +22,15 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=1`;
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pageNumber}`;
     console.log(url);
 
     fetchMovies(url);
-  }, []);
+  });
+
+  // const onClickhHandler = () => {
+  //   setPage(page + 1);
+  // };
 
   return (
     <>
@@ -31,6 +38,9 @@ const Home = () => {
       {movies.map((movie) => {
         return <h1 key={movie.id}>{movie.title}</h1>;
       })}
+      <Link to={`/popular/${pageNumber + 1}`}>
+        <button>Next Page</button>
+      </Link>
     </>
   );
 };
