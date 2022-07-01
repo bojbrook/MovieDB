@@ -1,4 +1,5 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import PopularMovies from './components/PopularMovies';
 import Home from './components/Home';
 import './App.css';
 
@@ -7,6 +8,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/popular">
+          <Route path=":page" element={<PopularMovies />} />
+        </Route>
       </Routes>
     </div>
   );
