@@ -12,6 +12,7 @@ const MovieInfo = (props) => {
 
     const movieObj = {
       title: data.title,
+      description: data.overview,
     };
     setMovie(movieObj);
   };
@@ -23,6 +24,7 @@ const MovieInfo = (props) => {
   return (
     <>
       <h1>{movie.title}</h1>
+      <p>{movie.description}</p>
     </>
   );
 };
