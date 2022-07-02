@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { MOVIE_INFO_URL, MOVIE_API } from '../utils/constants';
 
 const MovieInfo = (props) => {
   const [movie, setMovie] = useState({});
@@ -18,7 +19,7 @@ const MovieInfo = (props) => {
   };
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US`;
+    const url = `${MOVIE_INFO_URL}/${movieId}?api_key=${MOVIE_API}&language=en-US`;
     getMovieDetail(url);
   });
   return (

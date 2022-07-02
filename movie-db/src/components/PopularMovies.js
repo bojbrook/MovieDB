@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import { MOVIE_API, POPULAR_MOVIE_URL } from '../utils/constants';
+
 const Home = () => {
   let params = useParams();
   let pageNumber = parseInt(params.page, 10);
@@ -22,7 +24,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pageNumber}`;
+    const url = `${POPULAR_MOVIE_URL}?api_key=${MOVIE_API}&language=en-US&page=${pageNumber}`;
     console.log(url);
 
     fetchMovies(url);
